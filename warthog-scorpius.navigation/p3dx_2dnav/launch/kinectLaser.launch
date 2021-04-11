@@ -1,0 +1,8 @@
+<launch>
+<node pkg="tf" type="static_transform_publisher" name="kinect_laser_robot" args="0 0 0.60 0 0 0 base_link camera_depth_frame 100"/>
+<node name="laserscan_kinect" pkg="laserscan_kinect" type="laserscan_kinect" >
+    <remap from="image" to="/openni/depth/image_raw"/>
+    <remap from="camera_info" to="/openni/depth/camera_info"/>
+    <rosparam command="load" file="$(find laserscan_kinect)/config/params.yaml" />
+</node>
+</launch>

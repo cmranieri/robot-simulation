@@ -1,0 +1,10 @@
+digraph G {
+"pioneer/odom" -> "pioneer/base_link"[label="Broadcaster: /gazebo\nAverage rate: 100.216 Hz\nMost recent transform: 1270.815 ( 0.006 sec old)\nBuffer length: 4.620 sec\n"];
+"pioneer/base_link" -> "pioneer/p3dx_right_wheel"[label="Broadcaster: /gazebo\nAverage rate: 100.216 Hz\nMost recent transform: 1270.816 ( 0.005 sec old)\nBuffer length: 4.620 sec\n"];
+"pioneer/base_link" -> "pioneer/p3dx_left_wheel"[label="Broadcaster: /gazebo\nAverage rate: 100.216 Hz\nMost recent transform: 1270.816 ( 0.005 sec old)\nBuffer length: 4.620 sec\n"];
+"pioneer/base_link" -> "base_link"[label="Broadcaster: /pblink2blink\nAverage rate: 10.197 Hz\nMost recent transform: 1270.833 ( -0.012 sec old)\nBuffer length: 4.511 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1270.821"[ shape=plaintext ] ;
+ }->"pioneer/odom";
+}

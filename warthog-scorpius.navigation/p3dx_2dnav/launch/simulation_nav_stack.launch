@@ -1,0 +1,21 @@
+<launch>
+  <!-- Static tf betweem base and laser -->
+<!--
+     <node pkg="tf"
+        type="static_transform_publisher"
+        name="map_robot"
+        args="0 0 0 0 0 0 map pioneer/odom 50"/>
+-->
+      <node pkg="tf" 
+        type="static_transform_publisher" 
+        name="base_link_2_base_scan" 
+       args="0.2 0 0.2 0 0 0 pioneer/base_link hokuyo 50" />
+
+
+<include file="$(find p3dx_2dnav)/launch/navigation.launch"></include>
+<!-- MAPA -->
+    <arg name="map_file" default="/root/worlds/gazebo_home.yaml"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+<node pkg="rviz" type="rviz" name="rviz"/>
+</launch>

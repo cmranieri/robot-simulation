@@ -1,0 +1,21 @@
+<launch>
+
+    <node pkg="rviz" type="rviz" name="rviz"/>
+
+    <node pkg="rosaria" respawn="true" type="RosAria" name="pioneer" output="screen">
+        <param name="odom_frame" type="string" value="/odom" />
+        <param name="base_link_frame" type="string" value="/base_link" />
+    </node>
+
+    <node name="$(anon dynparam)" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters pioneer">
+        <param name="DriftFactor" type="int" value="36" />
+    </node>
+
+    <include file="$(find gmapping)/launch/slam_gmapping_pr2.launch"></include>
+
+    <node pkg="tf" type="static_transform_publisher" name="laser_robot" args="0.2 0 0.2 0 0 0 base_link laser 100"/>
+    <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node">
+        <param name="angle_min" value="-0.785398"/>
+        <param name="angle_max" value="0.785398"/>
+    </node>
+</launch>

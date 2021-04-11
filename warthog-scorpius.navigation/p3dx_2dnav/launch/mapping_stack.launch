@@ -1,0 +1,23 @@
+<launch>
+<node pkg="rosaria" type="RosAria" name="pioneer" output="screen"/>
+<node name="$(anon dynparam)" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters pioneer">
+    <param name="DriftFactor" type="int" value="36" />
+</node>
+
+<include file="$(find gmapping)/launch/slam_gmapping_pr2.launch"></include>
+<include file="$(find p3dx_2dnav)/launch/hokuyo.launch"></include>
+<!--<include file="$(find p3dx_2dnav)/launch/kinectLaser.launch"></include>-->
+<!--<include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"></include>-->
+<!--<include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"></include>-->
+<!-- Run rviz -->
+<node pkg="rviz" type="rviz" name="rviz"/>
+<!--
+<node pkg="tf" type="static_transform_publisher" name="kinect_laser_robot" args="0 0 0.60 0 0 0 base_link camera_depth_frame 100"/>
+<node name="laserscan_kinect" pkg="laserscan_kinect" type="laserscan_kinect" >
+    <remap from="image" to="/openni/depth/image_raw"/>
+    <remap from="camera_info" to="/openni/depth/camera_info"/>
+    <rosparam command="load" file="$(find laserscan_kinect)/config/params.yaml" />
+</node>
+<node pkg="tf" type="static_transform_publisher" name="laser_robot" args="0.15 0 0 0 0 0 base_link laser 100"/>
+<node pkg="urg_node" type="urg_node" name="urg_node"></node>-->
+</launch>

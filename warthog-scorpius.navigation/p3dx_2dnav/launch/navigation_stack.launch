@@ -1,0 +1,32 @@
+<launch>
+
+<!-- MAPA -->
+<arg name="map_file" default="/home/antares/Documents/antares/larc_v3.yaml"/>
+<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+<!-- INTERFACE COM A BASE -->
+<node pkg="rosaria" respawn="true" type="RosAria" name="pioneer" output="screen">
+    <param name="odom_frame" type="string" value="/pioneer/odom" />
+    <param name="base_link_frame" type="string" value="/pioneer/base_link" />
+</node>
+<node name="$(anon dynparam)" pkg="dynamic_reconfigure" type="dynparam" args="set_from_parameters pioneer">
+    <param name="DriftFactor" type="int" value="36" />
+</node>
+
+<!-- INTERFACE COM A BASE -->
+<include file="$(find p3dx_2dnav)/launch/navigation.launch"></include>
+
+<!-- INTERFACE COM LASER -->
+<include file="$(find p3dx_2dnav)/launch/hokuyo.launch"></include>
+
+<!--rviz -->
+<node pkg="rviz" type="rviz" name="rviz"/>
+
+
+<!-- FACE -->
+<include file="$(find lara_face)/launch/demo.launch"></include>
+</launch>
+
+<!--<include file="$(find p3dx_2dnav)/launch/kinectLaser.launch"></include>-->
+<!--<include file="$(find ira_laser_tools)/launch/laserscan_multi_merger.launch"></include>-->
+

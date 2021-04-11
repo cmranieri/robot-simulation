@@ -1,0 +1,7 @@
+<launch>
+<node pkg="tf" type="static_transform_publisher" name="laser_robot" args="0.2 0 0.2 0 0 0 /pioneer/base_link laser 100"/>
+<node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node">
+    <param name="angle_min" value="-0.785398"/>
+    <param name="angle_max" value="0.785398"/>
+</node>
+</launch>

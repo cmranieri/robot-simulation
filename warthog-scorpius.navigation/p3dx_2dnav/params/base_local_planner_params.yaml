@@ -1,0 +1,28 @@
+controller_frequency: 4.0 # Hz
+
+TrajectoryPlannerROS:
+  max_vel_x: 0.2 # max foward velocity m/s
+  min_vel_x: 0.05  # min foward velocity m/s
+  max_vel_theta: 0.3 # max rotational vel rad/sec
+  min_in_place_vel_theta: 0.3 # min in-place rotational vel rad/sec
+
+  acc_lim_theta: 0.2 # rotational acceleration limit
+  acc_lim_x: 0.4
+  acc_lim_y: 0.4
+
+  holonomic_robot: false
+
+  yaw_goal_tolerance: 0.25 # 15 graus
+  xy_goal_tolerance: 0.2
+
+  occdist_scale: 0.001
+  sim_granularity: 0.0125
+  sim_time: 3.0
+
+  meter_scoring: false
+  occdist_scale: 0.03
+  # global
+  pdist_scale: 4.0  #estava 0.6
+  # local
+  gdist_scale: 0.6   #estava 0.8
+  vx_samples: 15
